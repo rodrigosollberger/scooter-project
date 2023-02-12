@@ -1,0 +1,39 @@
+classDiagram
+
+    Scooter <|-- scooterApp
+    User <|-- scooterApp
+
+    class Scooter {
+        +string station
+        +int user
+        +int serial
+        +int nextSerial
+        +int charge
+        +bool isBroken
+        +rent()
+        +dock(station)
+        +recharge()
+        +requestRepair()
+
+        }
+
+    class User {
+        +string userName
+        +string password
+        +int age
+        +bool loggedIn
+        +login(password)
+        +logout()
+        }
+
+    class scooterApp{
+        +object stations
+        +object registeredUsers
+        +registerUser(username, password, age)
+        +loginUser(username, password)
+        +logoutUser(username)
+        +createScooter(station)
+        +dockScooter(scooter, station)
+        +rentScooter(scooter, user)
+        +print()
+        }

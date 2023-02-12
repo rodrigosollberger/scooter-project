@@ -1,0 +1,40 @@
+sequenceDiagram
+    User ->> ScooterApp: Login
+
+    alt New User
+        ScooterApp ->> User: Please Provide the Minimum Data Requirements
+        User ->> ScooterApp: Data Input
+        alt User does not meet minimum Requirements
+        ScooterApp ->> User: Cancel registration
+        else User meets minimum Requirements
+        ScooterApp ->> User: registration Successful
+        end
+    else Existing User
+        ScooterApp ->> User: Please input username and pwd
+        User ->> ScooterApp: Inputs Login details
+        ScooterApp ->>: Login Successful
+    end
+
+    User ->> ScooterApp: Search Available Scooters
+    Scooter ->> ScooterApp: Return Availability
+    User ->> Scooter: Scan Scooter Serial
+    Scooter ->> ScooterApp: Requested
+    ScooterApp ->> Scooter: Release from Docking Station
+    ScooterApp ->> User: Initiate Rent
+    Activate Scooter
+    User ->> Scooter: Return to Station
+    Scooter ->> ScooterApp: Scooter Docked
+    deactivate Scooter
+    ScooterApp ->> User: Rent finilised
+    ScooterApp -->> User: Clear out User
+    ScooterApp -->> User: Display Total
+    User ->> ScooterApp: Confirm Payment Details
+
+    alt Payment Unsuccessful
+        ScooterApp ->> User: Please try alternative method
+    else Payment Successful
+        ScooterApp ->> User: Payment Successful
+    end
+
+    
+
